@@ -120,6 +120,9 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_TRANSMISSION)	+= libevent
 # aria2 shared libs
 dir_$(CONFIG_FIRMWARE_INCLUDE_ARIA)		+= libxml2
 
+# dnscrypt-proxy lib
+dir_$(CONFIG_FIRMWARE_INCLUDE_DNSCRYPT-PROXY)	+= libsodium
+
 all:
 	for i in $(dir_y) ; do \
 		[ -d $$i ] && \
