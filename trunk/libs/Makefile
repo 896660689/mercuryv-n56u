@@ -121,7 +121,7 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_TRANSMISSION)	+= libevent
 dir_$(CONFIG_FIRMWARE_INCLUDE_ARIA)		+= libxml2
 
 # dnscrypt-proxy lib
-dir_$(CONFIG_FIRMWARE_INCLUDE_DNSCRYPT-PROXY)	+= libsodium
+dir_$(CONFIG_FIRMWARE_INCLUDE_DNSCRYPTPROXY)	+= libsodium
 
 all:
 	for i in $(dir_y) ; do \
