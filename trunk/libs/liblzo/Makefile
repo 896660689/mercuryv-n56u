@@ -16,8 +16,8 @@ configure:
 	( cd $(SRC_NAME) ; \
 	./configure \
 		--prefix=$(STAGEDIR) \
-		--enable-static \
-		--disable-shared \
+		--enable-shared \
+		--disable-static \
 		--host=$(HOST_TARGET) \
 		--build=$(HOST_BUILD) ; \
 	)
