@@ -80,6 +80,7 @@ dir_y						+= ebtables
 dir_y						+= iproute2
 dir_y						+= wireless_tools
 dir_y						+= shared
+dir_y						+= ralink-info
 dir_$(STORAGE_ENABLED)				+= libdisk
 dir_y						+= nvram
 dir_y						+= mtd_write
