@@ -28,6 +28,7 @@ endif
 #
 
 ROOTDIR        = $(shell pwd)
+CONFIG_TOOLCHAIN_DIR = $(ROOTDIR)/../toolchain-mipsel
 HOSTCC         = gcc
 ROMFSINST      = $(ROOTDIR)/tools/romfs-inst.sh
 TFTPDIR        = /tftpboot
