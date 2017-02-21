@@ -1,4 +1,4 @@
-SRC_NAME=libsodium-1.0.8
+SRC_NAME=libsodium-1.0.11
 
 all: config_test
 	$(MAKE) -C $(SRC_NAME)
@@ -12,6 +12,7 @@ config_test:
 
 configure:
 	( cd $(SRC_NAME) ; \
+	./autogen.sh ; \
 	./configure \
 		--prefix=$(STAGEDIR) \
 		--enable-static \
