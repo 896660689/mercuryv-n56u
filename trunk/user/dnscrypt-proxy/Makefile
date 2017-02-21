@@ -1,4 +1,4 @@
-SRC_NAME=dnscrypt-proxy-1.6.1
+SRC_NAME=dnscrypt-proxy-1.9.4
 
 CFLAGS  += -ffunction-sections -fdata-sections
 CXXFLAGS += -ffunction-sections -fdata-sections
