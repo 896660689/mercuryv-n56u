@@ -18,11 +18,13 @@ config_test:
 
 configure:
 	( cd $(SRC_NAME) ; \
+	./autogen.sh ; \
 	./configure \
 		--prefix=/usr \
 		--host=$(HOST_TARGET) \
 		--build=$(HOST_BUILD) \
-		--disable-ssp ; \
+		--disable-ssp \
+		--disable-plugins ; \
 	)
 
 clean:
