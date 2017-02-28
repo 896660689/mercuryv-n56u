@@ -16,8 +16,8 @@ configure:
 	( cd $(SRC_NAME) ; \
 	./configure \
 		--prefix=$(STAGEDIR) \
-		--enable-static \
-		--disable-shared \
+		--enable-shared \
+		--disable-static \
 		--host=$(HOST_TARGET) \
 		--build=$(HOST_BUILD) ; \
 	)
@@ -32,4 +32,5 @@ install:
 	$(MAKE) -C $(SRC_NAME) install DESTDIR="" ;
 
 romfs:
+	cp -fP $(DESTDIR)/lib/liblzo2.so* $(ROMFSDIR)/lib ;
 
