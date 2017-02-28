@@ -1,4 +1,5 @@
-SRC_NAME=tinc-1.1x
+SRC_NAME=tinc-1.1
+# git 4a45a65
 
 CFLAGS  += -std=gnu99 -ffunction-sections -fdata-sections
 CXXFLAGS += -ffunction-sections -fdata-sections
