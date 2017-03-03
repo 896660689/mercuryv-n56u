@@ -1955,6 +1955,12 @@ sessionSet (tr_session               * session,
   if (tr_variantDictFindInt (args_in, TR_KEY_seed_queue_size, &i))
     tr_sessionSetQueueSize (session, TR_UP, i);
 
+  if (tr_variantDictFindStr (args_in, TR_KEY_script_torrent_added_filename, &str, NULL))
+    tr_sessionSetTorrentAddedScript (session, str);
+
+  if (tr_variantDictFindBool (args_in, TR_KEY_script_torrent_added_enabled, &boolVal))
+    tr_sessionSetTorrentAddedScriptEnabled (session, boolVal);
+
   if (tr_variantDictFindStr (args_in, TR_KEY_script_torrent_done_filename, &str, NULL))
     tr_sessionSetTorrentDoneScript (session, str);
 
@@ -2092,6 +2098,8 @@ sessionGet (tr_session               * s,
   tr_variantDictAddBool (d, TR_KEY_speed_limit_up_enabled, tr_sessionIsSpeedLimited (s, TR_UP));
   tr_variantDictAddInt  (d, TR_KEY_speed_limit_down, tr_sessionGetSpeedLimit_KBps (s, TR_DOWN));
   tr_variantDictAddBool (d, TR_KEY_speed_limit_down_enabled, tr_sessionIsSpeedLimited (s, TR_DOWN));
+  tr_variantDictAddStr  (d, TR_KEY_script_torrent_added_filename, tr_sessionGetTorrentAddedScript (s));
+  tr_variantDictAddBool (d, TR_KEY_script_torrent_added_enabled, tr_sessionIsTorrentAddedScriptEnabled (s));
   tr_variantDictAddStr  (d, TR_KEY_script_torrent_done_filename, tr_sessionGetTorrentDoneScript (s));
   tr_variantDictAddBool (d, TR_KEY_script_torrent_done_enabled, tr_sessionIsTorrentDoneScriptEnabled (s));
   tr_variantDictAddBool (d, TR_KEY_queue_stalled_enabled, tr_sessionGetQueueStalledEnabled (s));

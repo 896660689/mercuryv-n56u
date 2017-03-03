@@ -57,4 +57,5 @@ else
 	rm -f $(INSTALLDIR)/usr/share/transmission/web/LICENSE
 endif
 	$(ROMFSINST) $(THISDIR)/install/usr/bin/transmission-daemon /usr/bin/transmission-daemon
+	$(ROMFSINST) $(THISDIR)/install/usr/bin/transmission-remote /usr/bin/transmission-remote
 	$(ROMFSINST) -p +x /usr/bin/transmission.sh

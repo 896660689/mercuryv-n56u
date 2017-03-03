@@ -362,6 +362,8 @@ tr_sessionGetDefaultSettings (tr_variant * d)
   tr_variantDictAddInt  (d, TR_KEY_rpc_port,                        atoi (TR_DEFAULT_RPC_PORT_STR));
   tr_variantDictAddStr  (d, TR_KEY_rpc_url,                         TR_DEFAULT_RPC_URL_STR);
   tr_variantDictAddBool (d, TR_KEY_scrape_paused_torrents_enabled,  true);
+  tr_variantDictAddStr  (d, TR_KEY_script_torrent_added_filename,    "");
+  tr_variantDictAddBool (d, TR_KEY_script_torrent_added_enabled,     false);
   tr_variantDictAddStr  (d, TR_KEY_script_torrent_done_filename,    "");
   tr_variantDictAddBool (d, TR_KEY_script_torrent_done_enabled,     false);
   tr_variantDictAddInt  (d, TR_KEY_seed_queue_size,                 10);
@@ -434,6 +436,8 @@ tr_sessionGetSettings (tr_session * s, tr_variant * d)
   tr_variantDictAddStr  (d, TR_KEY_rpc_whitelist,                tr_sessionGetRPCWhitelist (s));
   tr_variantDictAddBool (d, TR_KEY_rpc_whitelist_enabled,        tr_sessionGetRPCWhitelistEnabled (s));
   tr_variantDictAddBool (d, TR_KEY_scrape_paused_torrents_enabled, s->scrapePausedTorrents);
+  tr_variantDictAddBool (d, TR_KEY_script_torrent_added_enabled,  tr_sessionIsTorrentAddedScriptEnabled (s));
+  tr_variantDictAddStr  (d, TR_KEY_script_torrent_added_filename, tr_sessionGetTorrentAddedScript (s));
   tr_variantDictAddBool (d, TR_KEY_script_torrent_done_enabled,  tr_sessionIsTorrentDoneScriptEnabled (s));
   tr_variantDictAddStr  (d, TR_KEY_script_torrent_done_filename, tr_sessionGetTorrentDoneScript (s));
   tr_variantDictAddInt  (d, TR_KEY_seed_queue_size,              tr_sessionGetQueueSize (s, TR_UP));
@@ -929,6 +933,11 @@ sessionSetImpl (void * vdata)
   /**
   ***  Scripts
   **/
+
+  if (tr_variantDictFindBool (settings, TR_KEY_script_torrent_added_enabled, &boolVal))
+    tr_sessionSetTorrentAddedScriptEnabled (session, boolVal);
+  if (tr_variantDictFindStr (settings, TR_KEY_script_torrent_added_filename, &str, NULL))
+    tr_sessionSetTorrentAddedScript (session, str);
 
   if (tr_variantDictFindBool (settings, TR_KEY_script_torrent_done_enabled, &boolVal))
     tr_sessionSetTorrentDoneScriptEnabled (session, boolVal);
@@ -1963,6 +1972,7 @@ tr_sessionClose (tr_session * session)
       tr_free (session->metainfoLookup);
     }
   tr_device_info_free (session->downloadDir);
+  tr_free (session->torrentAddedScript);
   tr_free (session->torrentDoneScript);
   tr_free (session->configDir);
   tr_free (session->resumeDir);
@@ -2761,6 +2771,43 @@ tr_sessionSetTorrentDoneScript (tr_session * session, const char * scriptFilenam
     {
       tr_free (session->torrentDoneScript);
       session->torrentDoneScript = tr_strdup (scriptFilename);
+    }
+}
+
+bool
+tr_sessionIsTorrentAddedScriptEnabled (const tr_session * session)
+{
+  assert (tr_isSession (session));
+
+  return session->isTorrentAddedScriptEnabled;
+}
+
+void
+tr_sessionSetTorrentAddedScriptEnabled (tr_session * session, bool isEnabled)
+{
+  assert (tr_isSession (session));
+  assert (tr_isBool (isEnabled));
+
+  session->isTorrentAddedScriptEnabled = isEnabled;
+}
+
+const char *
+tr_sessionGetTorrentAddedScript (const tr_session * session)
+{
+  assert (tr_isSession (session));
+
+  return session->torrentAddedScript;
+}
+
+void
+tr_sessionSetTorrentAddedScript (tr_session * session, const char * scriptFilename)
+{
+  assert (tr_isSession (session));
+
+  if (session->torrentAddedScript != scriptFilename)
+    {
+      tr_free (session->torrentAddedScript);
+      session->torrentAddedScript = tr_strdup (scriptFilename);
     }
 }
 
