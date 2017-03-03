@@ -1,4 +1,4 @@
-SRC_NAME=curl-7.37.x
+SRC_NAME=curl-7.53.1
 
 all: config_test
 	$(MAKE) -C $(SRC_NAME)
@@ -16,6 +16,7 @@ configure:
 		--prefix=$(STAGEDIR) \
 		--enable-static \
 		--disable-shared \
+		--enable-cookies \
 		$(if $(CONFIG_IPV6),--enable-ipv6,--disable-ipv6) \
 		--disable-gopher \
 		--disable-ldap \
@@ -38,7 +39,7 @@ configure:
 		--disable-threaded-resolver \
 		--without-gnutls \
 		--without-ca-bundle \
-		--without-libidn \
+		--without-libidn2 \
 		--without-libssh2 \
 		--without-krb4 \
 		--without-nss \
