@@ -32,9 +32,12 @@ configure:
 	)
 
 clean:
+	if [ -f $(SRC_NAME)/Makefile ] ; then \
+		$(MAKE) -C $(SRC_NAME) distclean ; \
+	fi ; \
 	rm -f config_done
-	rm -rf install
+#	rm -rf install
 
 romfs:
 	$(ROMFSINST) $(THISDIR)/install/usr/sbin/tinc /usr/sbin
-	$(ROMFSINST) $(THISDIR)/install/usr/sbin/tincd /usr/sbin
+#	$(ROMFSINST) $(THISDIR)/install/usr/sbin/tincd /usr/sbin
