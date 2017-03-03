@@ -33,4 +33,5 @@ clean:
 
 romfs:
 	$(ROMFSINST) $(THISDIR)/install/usr/sbin/dnscrypt-proxy /usr/sbin/dnscrypt-proxy
+	$(ROMFSINST) $(THISDIR)/install/usr/bin/hostip /usr/bin/hostip
 	cp -fr $(THISDIR)/install/usr/share $(INSTALLDIR)/usr
