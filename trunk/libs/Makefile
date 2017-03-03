@@ -22,6 +22,7 @@ dir_y =
 dir_n =
 dir_  =
 
+LIBS_INCLUDE_LIBCURL=n
 LIBS_INCLUDE_LIBLZO=n
 LIBS_INCLUDE_LIBSSL=n
 LIBS_INCLUDE_LIBICONV=n
@@ -64,10 +65,14 @@ LIBS_INCLUDE_LIBLZO=y
 LIBS_INCLUDE_LIBSSL=y
 CONFIG_FIRMWARE_INCLUDE_OPENSSL_EC=y
 endif
+ifeq ($(CONFIG_FIRMWARE_INCLUDE_CURL_EXE),y)
+LIBS_INCLUDE_LIBCURL=y
+endif
 
 ifeq ($(STORAGE_ENABLED),y)
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_TRANSMISSION),y)
 LIBS_INCLUDE_LIBSSL=y
+LIBS_INCLUDE_LIBCURL=y
 endif
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_ARIA),y)
 LIBS_INCLUDE_LIBSSL=y
@@ -98,6 +103,7 @@ dir_y						+= libz
 dir_$(LIBS_INCLUDE_LIBLZO)			+= liblzo
 dir_$(LIBS_INCLUDE_LIBICONV)			+= libiconv
 dir_$(LIBS_INCLUDE_LIBSSL)			+= libssl
+dir_$(LIBS_INCLUDE_LIBCURL)			+= libcurl
 dir_$(LIBS_INCLUDE_LIBUSB_0)			+= libusb
 dir_$(LIBS_INCLUDE_LIBUSB_1)			+= libusb-1.0
 dir_y						+= libnfnetlink
@@ -119,7 +125,7 @@ dir_$(LIBS_INCLUDE_MEDIA)			+= libflac
 dir_$(LIBS_INCLUDE_MEDIA)			+= libsqlite
 
 # transmission shared libs
-dir_$(CONFIG_FIRMWARE_INCLUDE_TRANSMISSION)	+= libcurl
+#dir_$(CONFIG_FIRMWARE_INCLUDE_TRANSMISSION)	+= libcurl
 dir_$(CONFIG_FIRMWARE_INCLUDE_TRANSMISSION)	+= libevent
 
 # aria2 shared libs
