@@ -43,22 +43,31 @@ configure:
 		--disable-cmac \
 		--disable-xcbc \
 		--disable-scepclient \
-		--disable-vici \
-		--disable-swanctl \
+		--enable-vici \
+		--enable-swanctl \
 		--disable-dnskey \
 		--disable-pgp \
 		--disable-sshkey \
-		--disable-constraints \
+		--enable-constraints \
 		--disable-revocation \
-		--disable-random \
-		--disable-des \
-		--disable-aes \
-		--disable-md5 \
-		--disable-sha1 \
-		--disable-sha2 \
+		--enable-random \
+		--enable-des \
+		--enable-aes \
+		--enable-blowfish \
+		--enable-ccm \
+		--enable-ctr \
+		--enable-gcm \
+		--enable-lookip \
+		--enable-ntru \
+		--disable-rdrand \
+		--enable-unity \
+		--enable-md5 \
+		--enable-sha1 \
+		--enable-sha2 \
 		--disable-pkcs7 \
 		--disable-pkcs12 \
-		--disable-hmac \
+		--enable-hmac \
+		--enable-whitelist \
 		--enable-dhcp \
 		--enable-farp \
 		--enable-openssl \
@@ -85,7 +94,10 @@ romfs:
 	mkdir -p $(INSTALLDIR)/usr/libexec/ipsec
 	cp -fP $(THISDIR)/install/usr/lib/ipsec/*.so.0* $(ROMFSDIR)/usr/lib/ipsec
 	$(ROMFSINST) $(THISDIR)/install/usr/sbin/ipsec /usr/sbin/ipsec
+	$(ROMFSINST) $(THISDIR)/install/usr/sbin/swanctl /usr/sbin/swanctl
 	$(ROMFSINST) $(THISDIR)/install/usr/libexec/ipsec/charon /usr/libexec/ipsec/charon
 	$(ROMFSINST) $(THISDIR)/install/usr/libexec/ipsec/starter /usr/libexec/ipsec/starter
 	$(ROMFSINST) $(THISDIR)/install/usr/libexec/ipsec/stroke /usr/libexec/ipsec/stroke
 	$(ROMFSINST) $(THISDIR)/install/usr/libexec/ipsec/_updown /usr/libexec/ipsec/_updown
+	$(ROMFSINST) $(THISDIR)/install/usr/libexec/ipsec/lookip /usr/libexec/ipsec/lookip
+	$(ROMFSINST) $(THISDIR)/install/usr/libexec/ipsec/whitelist /usr/libexec/ipsec/whitelist
