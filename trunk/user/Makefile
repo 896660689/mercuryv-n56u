@@ -112,8 +112,6 @@ dir_$(CONFIG_FIRMWARE_INCLUDE_SSWAN)		+= strongswan
 dir_$(CONFIG_FIRMWARE_INCLUDE_XUPNPD)		+= xupnpd
 dir_$(CONFIG_FIRMWARE_INCLUDE_TCPDUMP)		+= tcpdump
 dir_$(SAMBA_ENABLED)				+= samba3
-dir_$(CONFIG_FIRMWARE_INCLUDE_DNSCRYPTPROXY)	+= dnscrypt-proxy
-dir_$(CONFIG_FIRMWARE_INCLUDE_TINC)		+= tinc
 
 ifdef CONFIG_BLK_DEV_SD
 dir_$(CONFIG_FIRMWARE_INCLUDE_HDPARM)		+= hdparm
@@ -150,6 +148,10 @@ dir_y						+= optware
 endif
 dir_y						+= mtd-utils
 endif
+
+dir_$(CONFIG_FIRMWARE_INCLUDE_DNSCRYPTPROXY)	+= dnscrypt-proxy
+dir_$(CONFIG_FIRMWARE_INCLUDE_TINC)		+= tinc
+dir_$(CONFIG_FIRMWARE_INCLUDE_HTOP)		+= htop
 
 all:
 	for i in $(dir_y) ; do \
