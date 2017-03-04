@@ -23,6 +23,7 @@ dir_n =
 dir_  =
 
 LIBS_INCLUDE_LIBCURL=n
+LIBS_INCLUDE_NCURSES=n
 LIBS_INCLUDE_LIBLZO=n
 LIBS_INCLUDE_LIBSSL=n
 LIBS_INCLUDE_LIBICONV=n
@@ -107,6 +108,7 @@ dir_$(LIBS_INCLUDE_LIBCURL)			+= libcurl
 dir_$(LIBS_INCLUDE_LIBUSB_0)			+= libusb
 dir_$(LIBS_INCLUDE_LIBUSB_1)			+= libusb-1.0
 dir_y						+= libnfnetlink
+dir_$(LIBS_INCLUDE_NCURSES)			+= ncurses
 
 # ipset shared libs
 dir_$(CONFIG_FIRMWARE_INCLUDE_IPSET)		+= libmnl
